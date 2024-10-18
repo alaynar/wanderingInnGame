@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://wdmm2s5a0c6t"]
+
+[ext_resource type="Script" path="res://goblin.gd" id="1_ln1n8"]
+[ext_resource type="Texture2D" uid="uid://dvu41b28v75gg" path="res://animations/standing_goblin_dummy.png" id="1_qim67"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eajtr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qim67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_qim67")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okm2q"]
+size = Vector2(104, 110)
+
+[node name="Goblin" type="Area2D"]
+texture_filter = 1
+position = Vector2(521, 331)
+script = ExtResource("1_ln1n8")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_eajtr")
+animation = &"stand"
+frame = 1
+frame_progress = 0.973407
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-43, -29)
+shape = SubResource("RectangleShape2D_okm2q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

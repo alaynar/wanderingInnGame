@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca8adah30bgnv"]
+
+[ext_resource type="PackedScene" uid="uid://dcxt4cxan3uxw" path="res://player_pixl.tscn" id="1_2tbh1"]
+[ext_resource type="Script" path="res://main.gd" id="1_uj0i5"]
+[ext_resource type="PackedScene" uid="uid://wdmm2s5a0c6t" path="res://goblin.tscn" id="2_hyxjn"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_uj0i5")
+
+[node name="Goblin" parent="." instance=ExtResource("2_hyxjn")]
+position = Vector2(546, 339)
+
+[node name="PlayerPixl" parent="." instance=ExtResource("1_2tbh1")]
+
+[connection signal="interact_avail" from="Goblin" to="." method="_on_goblin_interact_avail"]

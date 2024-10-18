@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://dcxt4cxan3uxw"]
+
+[ext_resource type="Script" path="res://erinSolstice.gd" id="1_m4qkf"]
+[ext_resource type="Texture2D" uid="uid://bgpdibcdfs1yt" path="res://animations/erinSolstice_FwdStand1.png" id="2_rser5"]
+[ext_resource type="Texture2D" uid="uid://cwlp7qpn84ske" path="res://animations/erinSolstice_FwdWalk1.png" id="3_nvthm"]
+[ext_resource type="Texture2D" uid="uid://dfyl7nuih2d2i" path="res://animations/erinSolstice_FwdStand2.png" id="4_8dos5"]
+[ext_resource type="Texture2D" uid="uid://45dueelsfvxg" path="res://animations/erinSolstice_FwdWalk2.png" id="5_86fmm"]
+[ext_resource type="Texture2D" uid="uid://com3ogt677nks" path="res://animations/erinSolstice_BckStand1.png" id="6_g33sh"]
+[ext_resource type="Texture2D" uid="uid://b6ykou2n2i373" path="res://animations/erinSolstice_BckWalk1.png" id="7_pfy31"]
+[ext_resource type="Texture2D" uid="uid://b0nl5u78g4lnp" path="res://animations/erinSolstice_BckStand2.png" id="8_uk4or"]
+[ext_resource type="Texture2D" uid="uid://bjtgcofbkwxfc" path="res://animations/erinSolstice_BckWalk2.png" id="9_cpxsm"]
+[ext_resource type="Texture2D" uid="uid://bxesep4gaifbg" path="res://animations/erinSolstice_SideStand1.png" id="10_o8r40"]
+[ext_resource type="Texture2D" uid="uid://meeerb4vwih1" path="res://animations/erinSolstice_SideWalk1.png" id="11_ajl2y"]
+[ext_resource type="Texture2D" uid="uid://h45ulphlsa6w" path="res://animations/erinSolstice_SideStand2.png" id="12_yd57c"]
+[ext_resource type="Texture2D" uid="uid://dflkk6sy4jo30" path="res://animations/erinSolstice_SideWalk2.png" id="13_0igbo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3a3e"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rser5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nvthm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8dos5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_86fmm")
+}],
+"loop": true,
+"name": &"down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g33sh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pfy31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uk4or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cpxsm")
+}],
+"loop": true,
+"name": &"up",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_o8r40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ajl2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yd57c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0igbo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lbnlc"]
+radius = 26.0
+height = 70.0
+
+[node name="erinSolstice" type="CharacterBody2D"]
+position = Vector2(332, 307)
+collision_mask = 3
+script = ExtResource("1_m4qkf")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_x3a3e")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, -35)
+shape = SubResource("CapsuleShape2D_lbnlc")
+
+[node name="Camera2D" type="Camera2D" parent="."]

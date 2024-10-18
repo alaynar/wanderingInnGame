@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://byr8rosmjgt0b"]
+
+[ext_resource type="Script" path="res://dialogue.gd" id="1_1trhh"]
+
+[node name="dialogue" type="CanvasLayer"]
+script = ExtResource("1_1trhh")
+
+[node name="Character" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 147.0
+offset_top = -144.0
+offset_right = -783.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Erin Solstice"
+
+[node name="Text" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 147.0
+offset_top = -115.0
+offset_right = -136.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "AHH Testing!"

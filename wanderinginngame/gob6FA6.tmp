@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://dvu41b28v75gg" path="res://animations/standing_goblin_dummy.png" id="1_qim67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okm2q"]
-size = Vector2(24, 29)
+size = Vector2(17, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn65v"]
-size = Vector2(36, 30)
+size = Vector2(31, 31)
 
 [node name="Goblin" type="Sprite2D"]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(517, 322)
+position = Vector2(521, 331)
 texture = ExtResource("1_qim67")
 script = ExtResource("1_ln1n8")
 metadata/_edit_group_ = true
@@ -22,7 +22,7 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(-1, -3.5)
+position = Vector2(-17.5, -4)
 shape = SubResource("RectangleShape2D_okm2q")
 
 [node name="Interaction Area" type="Area2D" parent="."]
@@ -30,30 +30,8 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Area"]
 y_sort_enabled = true
-position = Vector2(-1, -3)
+position = Vector2(-16.5, -11.5)
 shape = SubResource("RectangleShape2D_bn65v")
-
-[node name="ShowInteractButton2" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.332
-anchor_top = 0.292
-anchor_right = 0.65232
-anchor_bottom = 0.355992
-offset_left = -62.5
-offset_top = -62.5
-offset_right = -11.54
-offset_bottom = 129.501
-grow_horizontal = 2
-scale = Vector2(0.44, 0.0399951)
-metadata/_edit_use_anchors_ = true
-
-[node name="ShowInteractButton" type="Label" parent="."]
-offset_left = -24.0
-offset_top = -42.0
-offset_right = 24.0
-offset_bottom = -19.0
-size_flags_horizontal = 4
 
 [connection signal="area_shape_entered" from="Interaction Area" to="." method="_on_interaction_area_area_shape_entered"]
 [connection signal="body_entered" from="Interaction Area" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="Interaction Area" to="." method="_on_interaction_area_body_exited"]

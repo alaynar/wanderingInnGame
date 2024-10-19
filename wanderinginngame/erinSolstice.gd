@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 300 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 signal interact
+var characterName = "Erin Solstice"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +44,8 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "down"
 	elif velocity.y < 0:
 		$AnimatedSprite2D.animation = "up"
+	
+	move_and_slide()
 	pass
 
 #func _on_body_entered(body: Node2D) -> void:

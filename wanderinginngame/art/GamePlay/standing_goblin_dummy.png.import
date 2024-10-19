@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgpdibcdfs1yt"
-path="res://.godot/imported/erinSolstice_FwdStand1.png-10c349847991480f40559b4a6001b823.ctex"
+uid="uid://dvu41b28v75gg"
+path="res://.godot/imported/standing_goblin_dummy.png-b9c7924b12f6946637baeb8658c19aec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://animations/erinSolstice_FwdStand1.png"
-dest_files=["res://.godot/imported/erinSolstice_FwdStand1.png-10c349847991480f40559b4a6001b823.ctex"]
+source_file="res://art/GamePlay/standing_goblin_dummy.png"
+dest_files=["res://.godot/imported/standing_goblin_dummy.png-b9c7924b12f6946637baeb8658c19aec.ctex"]
 
 [params]
 

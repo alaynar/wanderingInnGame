@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://meeerb4vwih1"
-path="res://.godot/imported/erinSolstice_SideWalk1.png-c932f4d7e2a831ce615ac6379c5df829.ctex"
+uid="uid://cwlp7qpn84ske"
+path="res://.godot/imported/erinSolstice_FwdWalk1.png-63406529e121fe8e3d168030eb2fc6fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://animations/erinSolstice_SideWalk1.png"
-dest_files=["res://.godot/imported/erinSolstice_SideWalk1.png-c932f4d7e2a831ce615ac6379c5df829.ctex"]
+source_file="res://art/GamePlay/ErinSolstice/erinSolstice_FwdWalk1.png"
+dest_files=["res://.godot/imported/erinSolstice_FwdWalk1.png-63406529e121fe8e3d168030eb2fc6fb.ctex"]
 
 [params]
 

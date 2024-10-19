@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ca8adah30bgnv"]
 
-[ext_resource type="PackedScene" uid="uid://dcxt4cxan3uxw" path="res://player_pixl.tscn" id="1_2tbh1"]
+[ext_resource type="PackedScene" uid="uid://dcxt4cxan3uxw" path="res://ErinSolstice/player_pixl.tscn" id="1_2tbh1"]
 [ext_resource type="Script" path="res://main.gd" id="1_uj0i5"]
-[ext_resource type="PackedScene" uid="uid://wdmm2s5a0c6t" path="res://goblin.tscn" id="2_hyxjn"]
-[ext_resource type="PackedScene" uid="uid://byr8rosmjgt0b" path="res://dialogue.tscn" id="4_6sv6v"]
+[ext_resource type="PackedScene" uid="uid://wdmm2s5a0c6t" path="res://Goblin/goblin.tscn" id="2_hyxjn"]
+[ext_resource type="PackedScene" uid="uid://byr8rosmjgt0b" path="res://dialogue/dialogue.tscn" id="4_6sv6v"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_uj0i5")
@@ -11,16 +11,21 @@ script = ExtResource("1_uj0i5")
 [node name="Goblin" parent="." instance=ExtResource("2_hyxjn")]
 position = Vector2(546, 339)
 
-[node name="PlayerPixl" parent="." instance=ExtResource("1_2tbh1")]
+[node name="erinSolstice" parent="." instance=ExtResource("1_2tbh1")]
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerPixl"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="erinSolstice"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
 position = Vector2(385, 414)
 position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_drag_margin = true
 
 [node name="dialogue" parent="." instance=ExtResource("4_6sv6v")]
 
+[connection signal="gameStatus" from="." to="erinSolstice" method="_on_main_game_status"]
 [connection signal="interact_avail" from="Goblin" to="." method="_on_goblin_interact_avail"]
+[connection signal="status" from="dialogue" to="." method="_on_dialogue_status"]

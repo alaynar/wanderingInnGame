@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://wdmm2s5a0c6t"]
 
-[ext_resource type="Script" path="res://goblin.gd" id="1_ln1n8"]
-[ext_resource type="Texture2D" uid="uid://dvu41b28v75gg" path="res://animations/standing_goblin_dummy.png" id="1_qim67"]
+[ext_resource type="Script" path="res://Goblin/goblin.gd" id="1_ln1n8"]
+[ext_resource type="Texture2D" uid="uid://dvu41b28v75gg" path="res://art/GamePlay/standing_goblin_dummy.png" id="1_qim67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okm2q"]
 size = Vector2(24, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn65v"]
-size = Vector2(36, 30)
+size = Vector2(40, 40)
 
 [node name="Goblin" type="Sprite2D"]
 y_sort_enabled = true
@@ -30,7 +30,7 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Area"]
 y_sort_enabled = true
-position = Vector2(-1, -3)
+position = Vector2(-1, -6)
 shape = SubResource("RectangleShape2D_bn65v")
 
 [node name="ShowInteractButton2" type="Label" parent="."]

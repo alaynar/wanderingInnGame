@@ -15,18 +15,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#$AnimatedSprite2D.animation = "stand"
 	#$AnimatedSprite2D.play()
+	if inGoblinArea &&  Input.is_action_pressed("interact"):
+		var text = "Please don't kill me"
+		interact_avail.emit(characterName, text)
+	
 	pass
 
 
 func _on_interaction_area_body_entered(body: CharacterBody2D) -> void:
-	var interactButton = "'e' to interact"
+	var interactButton = "Press E"
 	inGoblinArea = true
 	$ShowInteractButton.text = interactButton
 	$ShowInteractButton.show()
 	
-	if inGoblinArea &&  Input.is_action_pressed("interact"):
-		var text = "Please don't kill me"
-		interact_avail.emit(characterName, text)
 	pass # Replace with function body.
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:

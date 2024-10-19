@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvu41b28v75gg"
-path="res://.godot/imported/standing_goblin_dummy.png-857130566bd6056d86d49f4a5dd53021.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://fspms2yxufhq"
+valid=false
 
 [deps]
 
-source_file="res://animations/standing_goblin_dummy.png"
-dest_files=["res://.godot/imported/standing_goblin_dummy.png-857130566bd6056d86d49f4a5dd53021.ctex"]
+source_file="res://art/Dialogue/erinSolstice_dialogue.png"
 
 [params]
 

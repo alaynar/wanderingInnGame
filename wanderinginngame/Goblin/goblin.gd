@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if inGoblinArea &&  Input.is_action_pressed("interact") && goblinState == "playable":
 		#var text = "Please don't kill me"
 		#interact_avail(characterName, text')
-		interact_avail.emit(1)
+		interact_avail.emit()
 	
 	pass
 

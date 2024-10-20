@@ -7,6 +7,8 @@ var currScriptVar
 var sizeX #size of the number of lines
 var sizeY #size of columns (1 is char, 2 is text, 3 is char image)
 var currX #Current x
+var currSceneNum
+var sceneStatus
 #var currY #current y
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +22,8 @@ func _ready() -> void:
 	$ContinueOptions.hide()
 	
 	currX = 0
+	currSceneNum = 0
+	sceneStatus = false
 	pass # Replace with function body.
 
 
@@ -28,6 +32,7 @@ func _process(delta: float) -> void:
 		
 	if (stillSpeaking):
 		if currX == sizeX:
+			sceneStatus = true
 			_stop_dialogue()
 		elif currX < sizeX:
 			
@@ -73,6 +78,9 @@ func _stop_dialogue() -> void:
 	$ContinueOptions.hide()
 	dim_background(dialogueState)
 	status.emit(dialogueState)
+	
+	if sceneStatus:
+		next_message.emit()
 	pass
 	
 func show_message(text):
@@ -103,11 +111,12 @@ func dim_background(dialogueState):
 	pass
 
 
-func _on_scripts_passing_script_ref(scriptVar,x) -> void:
+func _on_scripts_passing_script_ref(scriptVar,x,sceneNum) -> void:
 #func _on_scripts_passing_script_ref(scriptVar,x,y) -> void:
 	_start_dialogue()
 	stillSpeaking = true
 	currScriptVar = scriptVar
 	sizeX = x
+	currSceneNum = sceneNum
 	#currY = y
 	pass # Replace with function body.

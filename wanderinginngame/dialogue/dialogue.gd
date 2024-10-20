@@ -14,6 +14,7 @@ func _ready() -> void:
 	$Message.hide()
 	$Character.hide()
 	$ErinDialogue.hide()
+	$ContinueOptions.hide()
 	dialogueState = 'playable'
 	
 	currX = 0
@@ -25,14 +26,7 @@ func _process(delta: float) -> void:
 		
 	if (stillSpeaking):
 		if currX == sizeX:
-			currX = 0
-			#Done with dialogue
-			stillSpeaking = false
-			dialogueState = "playable"
-			$Character.hide()
-			$Message.hide()
-			$ErinDialogue.hide()
-			status.emit(dialogueState)
+			_stop_dialogue()
 		elif currX < sizeX:
 			char_name(currScriptVar[currX][0])
 			show_message(currScriptVar[currX][1])
@@ -50,8 +44,22 @@ func _start_dialogue() -> void:
 	dialogueState = "nonplayable"
 	print("Dialogue State: ", dialogueState)
 	status.emit(dialogueState)
+	$ContinueOptions.show()
+	status.emit(dialogueState)
 	pass
 
+func _stop_dialogue() -> void:
+	currX = 0
+	#Done with dialogue
+	stillSpeaking = false
+	dialogueState = "playable"
+	$Character.hide()
+	$Message.hide()
+	$ErinDialogue.hide()
+	$ContinueOptions.hide()
+	status.emit(dialogueState)
+	pass
+	
 func show_message(text):
 	$Message.text = text
 	$Message.show()

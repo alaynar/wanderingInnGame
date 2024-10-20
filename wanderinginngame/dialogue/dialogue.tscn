@@ -1,41 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://byr8rosmjgt0b"]
+[gd_scene load_steps=8 format=3 uid="uid://byr8rosmjgt0b"]
 
 [ext_resource type="Script" path="res://dialogue/dialogue.gd" id="1_1trhh"]
 [ext_resource type="Texture2D" uid="uid://bc4s3e8unnef2" path="res://art/Dialogue/erinSolstice_dialogue_rszTrans.png" id="2_fs1fs"]
+[ext_resource type="Texture2D" uid="uid://m6iiuolywpie" path="res://art/Dialogue/goblin_dialogue_single_trans.png" id="3_cgn6a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ik1n"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.873298, 0.873298, 0.873298, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_h37du"]
+resource_name = "typewriterEffect"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_sslv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fwu3i"]
+_data = {
+"RESET": SubResource("Animation_sslv6"),
+"typewriterEffect": SubResource("Animation_h37du")
+}
 
 [node name="dialogue" type="CanvasLayer"]
 script = ExtResource("1_1trhh")
-
-[node name="Character" type="Label" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 147.0
-offset_top = -144.0
-offset_right = -783.0
-offset_bottom = -110.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Erin Solstice"
-
-[node name="Message" type="Label" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 147.0
-offset_top = -115.0
-offset_right = -136.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "AHH Testing!"
 
 [node name="CanvasModulate" type="ColorRect" parent="."]
 color = Color(0.662745, 0.662745, 0.662745, 0.811765)
 
 [node name="ErinDialogue" type="TextureRect" parent="."]
+texture_filter = 2
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -50,16 +79,65 @@ grow_vertical = 0
 scale = Vector2(0.476, 0.456)
 texture = ExtResource("2_fs1fs")
 
-[node name="ContinueOptions" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="goblinDialogue" type="TextureRect" parent="."]
+texture_filter = 2
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -139.0
-offset_top = -48.0
-offset_right = 140.0
+offset_left = 31.0
+offset_top = -320.0
+offset_right = 749.0
+offset_bottom = 579.0
+grow_vertical = 0
+scale = Vector2(0.280001, 0.360001)
+texture = ExtResource("3_cgn6a")
+
+[node name="Message" type="RichTextLabel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 147.0
+offset_top = -115.0
+offset_right = -136.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ik1n")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Character" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = -144.0
+offset_right = -138.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Erin Solstice"
+
+[node name="ContinueOptions" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -55.0
+offset_right = -144.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.374139, 0.374139, 0.374139, 1)
 text = "'Enter' or 'Space' or click to continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fwu3i")
+}

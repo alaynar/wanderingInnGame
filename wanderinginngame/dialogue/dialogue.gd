@@ -12,8 +12,10 @@ var currX #Current x
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Message.hide()
+	#$Message2.hide()
 	$Character.hide()
 	$ErinDialogue.hide()
+	$goblinDialogue.hide()
 	$ContinueOptions.hide()
 	dialogueState = 'playable'
 	
@@ -28,10 +30,13 @@ func _process(delta: float) -> void:
 		if currX == sizeX:
 			_stop_dialogue()
 		elif currX < sizeX:
+			
+			hide_other_char()
 			char_name(currScriptVar[currX][0])
 			show_message(currScriptVar[currX][1])
 			char_image(currScriptVar[currX][2])
 			#char_image = scriptVar[currX][2]
+			
 			stillSpeaking = false
 			currX += 1
 		
@@ -40,6 +45,12 @@ func _process(delta: float) -> void:
 		
 	pass
 
+func hide_other_char():
+	if $goblinDialogue.visible:
+		$goblinDialogue.hide()
+	elif $ErinDialogue.visible:
+		$ErinDialogue.hide()
+	pass
 func _start_dialogue() -> void:
 	dialogueState = "nonplayable"
 	print("Dialogue State: ", dialogueState)
@@ -56,6 +67,7 @@ func _stop_dialogue() -> void:
 	$Character.hide()
 	$Message.hide()
 	$ErinDialogue.hide()
+	$goblinDialogue.hide()
 	$ContinueOptions.hide()
 	status.emit(dialogueState)
 	pass
@@ -63,6 +75,7 @@ func _stop_dialogue() -> void:
 func show_message(text):
 	$Message.text = text
 	$Message.show()
+	$AnimationPlayer.play("typewriterEffect")
 	pass
 	
 func char_name(characterName):
@@ -73,6 +86,8 @@ func char_name(characterName):
 func char_image(characterImage):
 	if characterImage == 'erin':
 		$ErinDialogue.show()
+	elif  characterImage == 'goblin':
+		$goblinDialogue.show()
 	pass
 	
 func dim_background(status):

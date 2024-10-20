@@ -14,14 +14,17 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_goblin_interact_avail(characterName, text) -> void:
+#func _on_goblin_interact_avail(sceneNumber) -> void:
+#func _on_goblin_interact_avail(characterName, text) -> void:
 	#THIS IS WHERE WE'D CHAT WITH THE CHARACTER
-	$dialogue._start_dialogue()
-	$dialogue.dim_background(true)
-	$dialogue.char_name(characterName)
-	$dialogue.show_message(text)
 	
-	pass # Replace with function body.
+
+#	$dialogue._start_dialogue()
+#	$dialogue.dim_background(true)
+#	$dialogue.char_name(characterName)
+#	$dialogue.show_message(text)
+	
+#	pass # Replace with function body.
 
 #func _get_gameState():
 #	return gameState
@@ -30,4 +33,5 @@ func _on_goblin_interact_avail(characterName, text) -> void:
 
 func _on_dialogue_status(gameState) -> void:
 	gameStatus.emit(gameState)
+	print("Game state is: ", gameState)
 	pass # Replace with function body.

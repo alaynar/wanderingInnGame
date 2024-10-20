@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fspms2yxufhq"
-valid=false
+uid="uid://bc4s3e8unnef2"
+path="res://.godot/imported/erinSolstice_dialogue_rszTrans.png-1f6a6d32abb0364bfbea0997d5e28bcc.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Dialogue/erinSolstice_dialogue.png"
+source_file="res://art/Dialogue/erinSolstice_dialogue_rszTrans.png"
+dest_files=["res://.godot/imported/erinSolstice_dialogue_rszTrans.png-1f6a6d32abb0364bfbea0997d5e28bcc.ctex"]
 
 [params]
 

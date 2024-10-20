@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca8adah30bgnv"]
+[gd_scene load_steps=6 format=3 uid="uid://ca8adah30bgnv"]
 
 [ext_resource type="PackedScene" uid="uid://dcxt4cxan3uxw" path="res://ErinSolstice/player_pixl.tscn" id="1_2tbh1"]
 [ext_resource type="Script" path="res://main.gd" id="1_uj0i5"]
 [ext_resource type="PackedScene" uid="uid://wdmm2s5a0c6t" path="res://Goblin/goblin.tscn" id="2_hyxjn"]
 [ext_resource type="PackedScene" uid="uid://byr8rosmjgt0b" path="res://dialogue/dialogue.tscn" id="4_6sv6v"]
+[ext_resource type="PackedScene" uid="uid://dsldeby3gss8a" path="res://dialogue/Script/scripts.tscn" id="5_r5kyo"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_uj0i5")
@@ -26,6 +27,11 @@ editor_draw_drag_margin = true
 
 [node name="dialogue" parent="." instance=ExtResource("4_6sv6v")]
 
+[node name="Scripts" parent="." instance=ExtResource("5_r5kyo")]
+
+[connection signal="gameStatus" from="." to="Goblin" method="_on_main_game_status"]
 [connection signal="gameStatus" from="." to="erinSolstice" method="_on_main_game_status"]
 [connection signal="interact_avail" from="Goblin" to="." method="_on_goblin_interact_avail"]
+[connection signal="interact_avail" from="Goblin" to="Scripts" method="_on_goblin_interact_avail"]
 [connection signal="status" from="dialogue" to="." method="_on_dialogue_status"]
+[connection signal="passingScriptRef" from="Scripts" to="dialogue" method="_on_scripts_passing_script_ref"]

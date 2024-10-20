@@ -4,21 +4,21 @@ extends CharacterBody2D
 var screen_size # Size of the game window.
 signal interact
 var characterName = "Erin Solstice"
-var playerState
+var playerState = "playable"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	$CollisionShape2D.disabled = false
-	var playerState = 'playable'
+	var playerState = "playable"
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if playerState != 'nonplayable':
+	if (playerState != "nonplayable"):
 		var velocity = Vector2.ZERO # The player's movement vector.
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1

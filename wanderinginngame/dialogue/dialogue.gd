@@ -11,13 +11,13 @@ var currX #Current x
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	dialogueState = 'playable'
 	$Message.hide()
-	#$Message2.hide()
+	dim_background(dialogueState)
 	$Character.hide()
 	$ErinDialogue.hide()
 	$goblinDialogue.hide()
 	$ContinueOptions.hide()
-	dialogueState = 'playable'
 	
 	currX = 0
 	pass # Replace with function body.
@@ -39,10 +39,13 @@ func _process(delta: float) -> void:
 			
 			stillSpeaking = false
 			currX += 1
-		
-	if Input.is_action_just_released("continue") && dialogueState == 'nonplayable':
-		stillSpeaking = true
-		
+	if Input.is_action_pressed("exit_dialogue"):
+		_stop_dialogue()
+			
+	if 	Input.is_action_just_released("continue") && $typewriterEffect.is_playing():
+		$typewriterEffect.seek(1.5, true)
+	elif Input.is_action_just_released("continue") && dialogueState == 'nonplayable':
+			stillSpeaking = true
 	pass
 
 func hide_other_char():
@@ -53,9 +56,9 @@ func hide_other_char():
 	pass
 func _start_dialogue() -> void:
 	dialogueState = "nonplayable"
-	print("Dialogue State: ", dialogueState)
+	#print("Dialogue State: ", dialogueState)
 	status.emit(dialogueState)
-	status.emit(dialogueState)
+	dim_background(dialogueState)
 	pass
 
 func _stop_dialogue() -> void:
@@ -68,6 +71,7 @@ func _stop_dialogue() -> void:
 	$ErinDialogue.hide()
 	$goblinDialogue.hide()
 	$ContinueOptions.hide()
+	dim_background(dialogueState)
 	status.emit(dialogueState)
 	pass
 	
@@ -91,12 +95,12 @@ func char_image(characterImage):
 		$goblinDialogue.show()
 	pass
 	
-#func dim_background(status):
-#	if status:
-#		$CanvasModulate.show()
-#	else:
-#		$CanvasModulate.hide()
-#	pass
+func dim_background(dialogueState):
+	if dialogueState == 'nonplayable':
+		$CanvasModulate.show()
+	else:
+		$CanvasModulate.hide()
+	pass
 
 
 func _on_scripts_passing_script_ref(scriptVar,x) -> void:

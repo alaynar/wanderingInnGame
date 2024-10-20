@@ -33,5 +33,5 @@ func _process(delta: float) -> void:
 
 func _on_dialogue_status(gameState) -> void:
 	gameStatus.emit(gameState)
-	print("Game state is: ", gameState)
+	#print("Game state is: ", gameState)
 	pass # Replace with function body.

@@ -78,7 +78,7 @@ size = Vector2(17, 26)
 
 [node name="erinSolstice" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(385, 414)
+position = Vector2(249, 259)
 script = ExtResource("1_d25pv")
 metadata/_edit_group_ = true
 

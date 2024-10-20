@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byr8rosmjgt0b"]
+[gd_scene load_steps=9 format=3 uid="uid://byr8rosmjgt0b"]
 
 [ext_resource type="Script" path="res://dialogue/dialogue.gd" id="1_1trhh"]
 [ext_resource type="Texture2D" uid="uid://bc4s3e8unnef2" path="res://art/Dialogue/erinSolstice_dialogue_rszTrans.png" id="2_fs1fs"]
@@ -20,6 +20,33 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Animation" id="Animation_sslv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContinueOptions:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.374139, 0.374139, 0.374139, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_h37du"]
 resource_name = "typewriterEffect"
 length = 1.5
@@ -36,24 +63,27 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_sslv6"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_xqlsx"]
+resource_name = "fadeText"
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/path = NodePath("ContinueOptions:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Color(1, 1, 1, 0), Color(0.374139, 0.374139, 0.374139, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fwu3i"]
 _data = {
 "RESET": SubResource("Animation_sslv6"),
+"fadeText": SubResource("Animation_xqlsx"),
 "typewriterEffect": SubResource("Animation_h37du")
 }
 
@@ -92,21 +122,6 @@ grow_vertical = 0
 scale = Vector2(0.280001, 0.360001)
 texture = ExtResource("3_cgn6a")
 
-[node name="Message" type="RichTextLabel" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 147.0
-offset_top = -115.0
-offset_right = -136.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ik1n")
-visible_characters = 0
-visible_ratio = 0.0
-
 [node name="Character" type="Label" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -121,6 +136,21 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Erin Solstice"
+
+[node name="Message" type="RichTextLabel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 147.0
+offset_top = -115.0
+offset_right = -136.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ik1n")
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="ContinueOptions" type="Label" parent="."]
 anchors_preset = 3
@@ -137,7 +167,12 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.374139, 0.374139, 0.374139, 1)
 text = "'Enter' or 'Space' or click to continue"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="typewriterEffect" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fwu3i")
+}
+
+[node name="fadeText" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fwu3i")
 }

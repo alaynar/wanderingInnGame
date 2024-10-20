@@ -55,7 +55,6 @@ func _start_dialogue() -> void:
 	dialogueState = "nonplayable"
 	print("Dialogue State: ", dialogueState)
 	status.emit(dialogueState)
-	$ContinueOptions.show()
 	status.emit(dialogueState)
 	pass
 
@@ -75,7 +74,9 @@ func _stop_dialogue() -> void:
 func show_message(text):
 	$Message.text = text
 	$Message.show()
-	$AnimationPlayer.play("typewriterEffect")
+	$typewriterEffect.play("typewriterEffect")
+	$ContinueOptions.show()
+	$fadeText.play("fadeText")
 	pass
 	
 func char_name(characterName):
@@ -90,12 +91,12 @@ func char_image(characterImage):
 		$goblinDialogue.show()
 	pass
 	
-func dim_background(status):
-	if status:
-		$CanvasModulate.show()
-	else:
-		$CanvasModulate.hide()
-	pass
+#func dim_background(status):
+#	if status:
+#		$CanvasModulate.show()
+#	else:
+#		$CanvasModulate.hide()
+#	pass
 
 
 func _on_scripts_passing_script_ref(scriptVar,x) -> void:

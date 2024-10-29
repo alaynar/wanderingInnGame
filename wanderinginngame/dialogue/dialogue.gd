@@ -45,12 +45,13 @@ func _process(delta: float) -> void:
 			stillSpeaking = false
 			currX += 1
 	if Input.is_action_pressed("exit_dialogue"):
+		sceneStatus = false
 		_stop_dialogue()
-			
+	
 	if 	Input.is_action_just_released("continue") && $typewriterEffect.is_playing():
 		$typewriterEffect.seek(1.5, true)
 	elif Input.is_action_just_released("continue") && dialogueState == 'nonplayable':
-			stillSpeaking = true
+		stillSpeaking = true
 	pass
 
 func hide_other_char():
@@ -76,6 +77,8 @@ func _stop_dialogue() -> void:
 	$ErinDialogue.hide()
 	$goblinDialogue.hide()
 	$ContinueOptions.hide()
+	$typewriterEffect.seek(1.5, true)
+	$fadeText.seek(1.5,true)
 	dim_background(dialogueState)
 	status.emit(dialogueState)
 	

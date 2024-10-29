@@ -44,5 +44,6 @@ position = Vector2(-653, -300)
 [connection signal="interact_avail" from="Goblin" to="Scripts" method="_on_goblin_interact_avail"]
 [connection signal="next_message" from="dialogue" to="Scripts" method="_on_dialogue_next_message"]
 [connection signal="status" from="dialogue" to="." method="_on_dialogue_status"]
+[connection signal="choiceSelection" from="Scripts" to="dialogue" method="_on_scripts_choice_selection"]
 [connection signal="passingScriptRef" from="Scripts" to="dialogue" method="_on_scripts_passing_script_ref"]
 [connection signal="sceneChange" from="Scripts" to="." method="_on_scripts_scene_change"]

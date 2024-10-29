@@ -123,3 +123,9 @@ func _on_scripts_passing_script_ref(scriptVar,x,sceneNum) -> void:
 	currSceneNum = sceneNum
 	#currY = y
 	pass # Replace with function body.
+
+#If there is a choice that will have to be made
+func _on_scripts_choice_selection(choiceNum, choiceArr) -> void:
+	
+	
+	pass # Replace with function body.

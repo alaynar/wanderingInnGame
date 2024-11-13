@@ -9,6 +9,7 @@ signal talking
 func _ready() -> void:
 	#gameState = "playable"
 	sceneNum = 0
+	new_game()
 	pass # Replace with function body.
 
 
@@ -28,3 +29,8 @@ func _on_goblin_interact_avail() -> void:
 func _on_scripts_scene_change(nextSceneNum) -> void:
 	sceneNum = nextSceneNum
 	pass # Replace with function body.
+
+func new_game():
+	$GrassLands.hide()
+	$Caves.show()
+	pass

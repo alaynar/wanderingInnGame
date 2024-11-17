@@ -39,22 +39,18 @@ editor_draw_drag_margin = true
 position = Vector2(-653, -300)
 
 [node name="Caves" parent="." instance=ExtResource("7_aip0g")]
-visible = false
 z_index = -1
 position = Vector2(-340, -103)
 
 [node name="sceneTransition" parent="." instance=ExtResource("8_l4bhj")]
 
-[connection signal="choiceSelection" from="." to="dialogue" method="_on_main_choice_selection"]
 [connection signal="gameStatus" from="." to="Goblin" method="_on_main_game_status"]
 [connection signal="gameStatus" from="." to="erinSolstice" method="_on_main_game_status"]
 [connection signal="talking" from="." to="Scripts" method="_on_main_talking"]
 [connection signal="interact_avail" from="Goblin" to="." method="_on_goblin_interact_avail"]
 [connection signal="interact_avail" from="Goblin" to="Scripts" method="_on_goblin_interact_avail"]
-[connection signal="choiceSelected" from="dialogue" to="." method="_on_dialogue_choice_selected"]
 [connection signal="next_message" from="dialogue" to="Scripts" method="_on_dialogue_next_message"]
 [connection signal="status" from="dialogue" to="." method="_on_dialogue_status"]
-[connection signal="status" from="dialogue" to="Scripts" method="_on_dialogue_status"]
 [connection signal="choiceSelection" from="Scripts" to="dialogue" method="_on_scripts_choice_selection"]
 [connection signal="passingScriptRef" from="Scripts" to="dialogue" method="_on_scripts_passing_script_ref"]
 [connection signal="sceneChange" from="Scripts" to="." method="_on_scripts_scene_change"]

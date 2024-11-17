@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if (playerState != "nonplayable"):
+	if (playerState == "playable"):
 		var velocity = Vector2.ZERO # The player's movement vector.
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1

@@ -2,13 +2,14 @@ extends Node
 signal passingScriptRef
 signal sceneChange
 signal choiceSelection
-var sceneNum = [0.0,0.1,0.2,0.3,1.0,1.1,1.2,1.3,-1]
+var isNextDialChoice
+var sceneNum = [0.0,0.1,0.2,0.3,1.0,1.1,1.2,1.3,1.4,-1]
 var currScene = 0
 
 var scriptCave0v0 = [
-				["Erin Solstice", "Hmmmm mmmmHmmm mhmmmm hmmmm", "erin", -2],
+				["Erin Solstice", "hey there delilah, whats it like-", "erin", -2],
 				["Erin Solstice", "Huh?", "erin", -2],
-				["Erin Solstice", "where am i?", "erin", -2],
+				["Erin Solstice", "where am I?", "erin", -2],
 				["Erin Solstice", "I must've taken a wrong turn, a VERY wrong turn. Where's the bathroom?", "erin", -2],
 				]
 
@@ -52,7 +53,10 @@ var scriptWildOpt1v2 = [
 var scriptWildOpt1v3 = [
 				["Erin Solstice", "Welp, I can't stay here. What if the dragon comes out", "erin", 8],
 ]
-
+#Wander
+var scriptWild1v4 = [
+				["Creator", "Come back for more story next time!", "", -2],
+]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -63,6 +67,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_main_talking(varSceneNum) -> void:
+	print(varSceneNum)
 	if sceneNum[varSceneNum] == 0.0:
 		var length = scriptCave0v0.size()
 		passingScriptRef.emit(scriptCave0v0,length,currScene)
@@ -78,8 +83,7 @@ func _on_main_talking(varSceneNum) -> void:
 	elif sceneNum[varSceneNum] == 1.0:
 		var length = scriptWild1v0.size()
 		passingScriptRef.emit(scriptWild1v0,length,currScene)
-		var choiceArray=["Scream","Stay","Wander"]
-		choiceSelection.emit(3,choiceArray)
+		isNextDialChoice = true
 	elif sceneNum[varSceneNum] == 1.1:
 		var length = scriptWildOpt1v1.size()
 		passingScriptRef.emit(scriptWildOpt1v1,length,currScene)
@@ -89,14 +93,29 @@ func _on_main_talking(varSceneNum) -> void:
 	elif sceneNum[varSceneNum] == 1.3:
 		var length = scriptWildOpt1v3.size()
 		passingScriptRef.emit(scriptWildOpt1v3,length,currScene)
+	elif sceneNum[varSceneNum] == 1.4:
+		var length = scriptWild1v4.size()
+		passingScriptRef.emit(scriptWild1v4,length,currScene)
 	else:
 		print(varSceneNum)
 
 	pass # Replace with function body.
 
-func _on_dialogue_next_message() -> void:
+func _on_dialogue_next_message(choice) -> void:
 	#Dialog has finished - change scene and emit
-	if sceneNum[currScene+1] != -1:
+	if choice != -2:
+		if sceneNum.size() > choice:
+			currScene = choice
+		else:
+			currScene = sceneNum[sceneNum.size() -1]
+	elif choice == -2 && sceneNum[currScene+1] != -1:
 		currScene += 1
 	sceneChange.emit(currScene)
+	pass # Replace with function body.
+
+func _on_dialogue_status(passedDialState) -> void:
+	if passedDialState == 'playable' && isNextDialChoice:
+		if currScene == 4:
+			var choiceArray=["Scream","Stay","Wander",5,6,7]
+			choiceSelection.emit(3,choiceArray)
 	pass # Replace with function body.

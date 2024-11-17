@@ -172,6 +172,80 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.374139, 0.374139, 0.374139, 1)
 text = "'Enter' or 'Space' or click to continue"
 
+[node name="Escape" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 144.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.787759, 0.787759, 0.787759, 1)
+text = "'Esc' at any time"
+
+[node name="Options3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -173.0
+offset_top = -238.0
+offset_right = -173.0
+offset_bottom = -238.0
+
+[node name="OptionA" type="Button" parent="Options3"]
+z_index = 5
+y_sort_enabled = true
+offset_left = 348.0
+offset_top = 631.0
+offset_right = 476.0
+offset_bottom = 671.0
+
+[node name="OptionB" type="Button" parent="Options3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 484.0
+offset_top = 630.0
+offset_right = 612.0
+offset_bottom = 670.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionC" type="Button" parent="Options3"]
+offset_left = 625.0
+offset_top = 630.0
+offset_right = 753.0
+offset_bottom = 670.0
+
+[node name="Options2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -172.0
+offset_top = -239.0
+offset_right = -172.0
+offset_bottom = -239.0
+
+[node name="OptionD" type="Button" parent="Options2"]
+offset_left = 352.0
+offset_top = 630.0
+offset_right = 480.0
+offset_bottom = 670.0
+
+[node name="OptionE" type="Button" parent="Options2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 617.0
+offset_top = 631.0
+offset_right = 745.0
+offset_bottom = 671.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="typewriterEffect" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fwu3i")
@@ -181,3 +255,9 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_fwu3i")
 }
+
+[connection signal="pressed" from="Options3/OptionA" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="Options3/OptionB" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="Options3/OptionC" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="Options2/OptionD" to="." method="_on_option_d_pressed"]
+[connection signal="pressed" from="Options2/OptionE" to="." method="_on_option_e_pressed"]

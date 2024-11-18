@@ -35,7 +35,7 @@ var scriptCaveOpt0v3 = [
 var scriptWild1v0 = [
 				["Erin Solstice", "oh..*inhale*", "erin", -2],
 				["Erin Solstice", "my..*inhale*", "erin", -2],
-				["Erin Solstice", "chess..*inhale*", "erin", -2],
+				["Erin Solstice", "stars..*inhale*", "erin", -2],
 				["Erin Solstice", "That was real, much too real", "erin", -2],
 				["Erin Solstice", "Where am I now?", "erin", -2],
 				]

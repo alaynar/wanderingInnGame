@@ -5,6 +5,7 @@ signal gameStatus
 var sceneNum
 signal talking
 signal choiceSelection
+signal mainMenuStart
 
 @onready var sceneTransition = $sceneTransition/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +15,7 @@ func _ready() -> void:
 	
 	#player settings:
 	#$Camera2D.enabled = true
-	new_game()
+	mainMenuStart.emit()
 	pass # Replace with function body.
 
 
@@ -27,6 +28,8 @@ func _on_dialogue_status(gameState) -> void:
 	#print("Game state is: ", gameState)
 	pass # Replace with function body.
 
+
+
 func _on_goblin_interact_avail() -> void:
 	talking.emit(sceneNum)
 	pass # Replace with function body.
@@ -37,9 +40,12 @@ func _on_scripts_scene_change(nextSceneNum) -> void:
 
 #On new game, load this
 func new_game():
-	Global.location = "cave"
+	sceneTransition.play("fadeIn")
 	$GrassLands.hide()
 	$Caves.show()
+	sceneTransition.play("fadeOut")
+	await get_tree().create_timer(.8).timeout
+	Global.location = "cave"
 	#get_tree().change_scene_to_file("res://caves.tscn")
 	talking.emit(sceneNum)
 	pass
@@ -71,4 +77,9 @@ func _on_caves_exit_cave() -> void:
 
 func _on_dialogue_choice_selected() -> void:
 	talking.emit(sceneNum)
+	pass # Replace with function body.
+
+
+func _on_menus_game_paused(gameState) -> void:
+	gameStatus.emit(gameState)
 	pass # Replace with function body.

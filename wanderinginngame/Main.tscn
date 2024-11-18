@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca8adah30bgnv"]
+[gd_scene load_steps=10 format=3 uid="uid://ca8adah30bgnv"]
 
 [ext_resource type="PackedScene" uid="uid://dcxt4cxan3uxw" path="res://ErinSolstice/player_pixl.tscn" id="1_2tbh1"]
 [ext_resource type="Script" path="res://main.gd" id="1_uj0i5"]
@@ -8,11 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b8gjoq5qqbwry" path="res://grasslands.tscn" id="6_kax1j"]
 [ext_resource type="PackedScene" uid="uid://dl81jfigd4o4p" path="res://caves.tscn" id="7_aip0g"]
 [ext_resource type="PackedScene" uid="uid://bswm61upsmj2g" path="res://art/GamePlay/scene_transition.tscn" id="8_l4bhj"]
+[ext_resource type="PackedScene" uid="uid://bpagh8nkmx4x7" path="res://menus.tscn" id="9_egvqv"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_uj0i5")
 
 [node name="Goblin" parent="." instance=ExtResource("2_hyxjn")]
+visible = false
 position = Vector2(252, 93)
 
 [node name="erinSolstice" parent="." instance=ExtResource("1_2tbh1")]
@@ -39,15 +41,19 @@ editor_draw_drag_margin = true
 position = Vector2(-653, -300)
 
 [node name="Caves" parent="." instance=ExtResource("7_aip0g")]
-visible = false
 z_index = -1
 position = Vector2(-340, -103)
 
 [node name="sceneTransition" parent="." instance=ExtResource("8_l4bhj")]
 
+[node name="Menus" parent="." instance=ExtResource("9_egvqv")]
+size_flags_horizontal = 4
+
 [connection signal="choiceSelection" from="." to="dialogue" method="_on_main_choice_selection"]
 [connection signal="gameStatus" from="." to="Goblin" method="_on_main_game_status"]
 [connection signal="gameStatus" from="." to="erinSolstice" method="_on_main_game_status"]
+[connection signal="mainMenuStart" from="." to="Menus" method="show_main_menu"]
+[connection signal="mainMenuStart" from="." to="Menus" method="_on_main_main_menu_start"]
 [connection signal="talking" from="." to="Scripts" method="_on_main_talking"]
 [connection signal="interact_avail" from="Goblin" to="." method="_on_goblin_interact_avail"]
 [connection signal="interact_avail" from="Goblin" to="Scripts" method="_on_goblin_interact_avail"]
@@ -60,3 +66,6 @@ position = Vector2(-340, -103)
 [connection signal="sceneChange" from="Scripts" to="." method="_on_scripts_scene_change"]
 [connection signal="dragon" from="Caves" to="." method="_on_caves_dragon"]
 [connection signal="exitCave" from="Caves" to="." method="_on_caves_exit_cave"]
+[connection signal="gamePaused" from="Menus" to="." method="_on_menus_game_paused"]
+[connection signal="newGameStart" from="Menus" to="." method="new_game"]
+[connection signal="newGameStart" from="Menus" to="." method="_on_menus_new_game_start"]

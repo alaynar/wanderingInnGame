@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://dl81jfigd4o4p"]
+[gd_scene load_steps=11 format=4 uid="uid://dl81jfigd4o4p"]
 
 [ext_resource type="Texture2D" uid="uid://dsfserasmooea" path="res://art/Tilemap/CaveScene.png" id="1_sjsxm"]
 [ext_resource type="Texture2D" uid="uid://mi3hjxhaebl6" path="res://art/GamePlay/dragonPixel.png" id="2_3pvax"]
 [ext_resource type="Script" path="res://caves.gd" id="2_h658p"]
+[ext_resource type="AudioStream" uid="uid://ctemr7w7hv2up" path="res://music/dark-ambient-cave-experience-224286.mp3" id="4_1hk4e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aalna"]
 texture = ExtResource("1_sjsxm")
@@ -172,6 +173,9 @@ position = Vector2(975, 296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeOfCave"]
 shape = SubResource("SegmentShape2D_up58o")
+
+[node name="Cave Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1hk4e")
 
 [connection signal="body_entered" from="DragonLine" to="." method="_on_dragon_line_body_entered"]
 [connection signal="body_entered" from="EdgeOfCave" to="." method="_on_edge_of_cave_body_entered"]

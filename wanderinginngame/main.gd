@@ -44,6 +44,7 @@ func new_game():
 	$GrassLands.hide()
 	$Goblin.hide()
 	$Caves.show()
+	$"Caves/Cave Music".play()
 	$erinSolstice.position.x = 640
 	$erinSolstice.position.y = 278
 	sceneTransition.play("fadeOut")
@@ -75,7 +76,7 @@ func _on_caves_exit_cave() -> void:
 			await get_tree().create_timer(0.2).timeout
 			sceneTransition.play("fadeOut")
 			Global.location = "grassland"
-			
+			$"Caves/Cave Music".stop()
 			talking.emit(sceneNum)
 	#await get_tree().create_timer(0.5).timeout
 	#get_tree().change_scene_to_file("res://grasslands.tscn")
@@ -114,10 +115,12 @@ func _on_menus_load_game() -> void:
 	if Global.location == 'cave':
 		$Caves.show()
 		$GrassLands.hide()
+		$"Caves/Cave Music".play()
 	elif Global.location == 'grassland':
 		$GrassLands.show()
 		$Goblin.show()
 		$Caves.hide()
+		$"Caves/Cave Music".stop()
 	sceneTransition.play("fadeOut")
 	await get_tree().create_timer(0.5).timeout
 	print("Loaded playerPos: ", $erinSolstice.position.x, " ", $erinSolstice.position.y)

@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 #Signals
 signal newGameStart
@@ -13,14 +13,14 @@ func show_main_menu():
 	$WanderingInnImage/Author.text = "[center]Created by:\nAlayna Montoya[/center]"
 	$WanderingInnImage/Title.text = "[center]Wandering Inn:\nThe Game[/center]"
 	hide_pause_menu()
-	$PauseButton.hide()
+	$CanvasLayer/PauseButton.hide()
 	gamePaused.emit("nonplayable")
 	pass
 	
 
 func hide_main_menu():
 	$WanderingInnImage.hide()
-	$PauseButton.show()
+	$CanvasLayer/PauseButton.show()
 	gamePaused.emit("playable")
 	pass
 

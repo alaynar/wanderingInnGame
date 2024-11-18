@@ -43,10 +43,13 @@ func new_game():
 	sceneTransition.play("fadeIn")
 	$GrassLands.hide()
 	$Caves.show()
+	$erinSolstice.position.x = 640
+	$erinSolstice.position.y = 278
 	sceneTransition.play("fadeOut")
 	await get_tree().create_timer(.8).timeout
 	Global.location = "cave"
 	#get_tree().change_scene_to_file("res://caves.tscn")
+	sceneNum = 0
 	talking.emit(sceneNum)
 	pass
 

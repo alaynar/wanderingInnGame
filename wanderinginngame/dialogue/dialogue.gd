@@ -43,7 +43,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if dialogueState == 'choosing':
-		print("Still choosing")
+		dialogueState = 'choosing'
 	else:
 		if (stillSpeaking):
 			if currX == sizeX:

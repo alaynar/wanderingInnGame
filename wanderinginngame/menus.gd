@@ -47,6 +47,9 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_load_game_button_pressed() -> void:
+	loadGame.emit()
+	hide_main_menu()
+	hide_pause_menu()
 	pass # Replace with function body.
 
 
@@ -54,6 +57,7 @@ func _on_credits_button_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_save_game_button_pressed() -> void:
+	saveGame.emit()
 	pass # Replace with function body.
 
 func _on_quit_pressed() -> void:

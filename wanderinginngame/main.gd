@@ -42,6 +42,7 @@ func _on_scripts_scene_change(nextSceneNum) -> void:
 func new_game():
 	sceneTransition.play("fadeIn")
 	$GrassLands.hide()
+	$Goblin.hide()
 	$Caves.show()
 	$erinSolstice.position.x = 640
 	$erinSolstice.position.y = 278
@@ -69,10 +70,13 @@ func _on_caves_exit_cave() -> void:
 	
 			$Caves.hide()
 			$GrassLands.show()
+			$Goblin.show()
 			sceneTransition.get_parent().get_node("ColorRect").color.a = 255
 			await get_tree().create_timer(0.2).timeout
 			sceneTransition.play("fadeOut")
 			Global.location = "grassland"
+			
+			talking.emit(sceneNum)
 	#await get_tree().create_timer(0.5).timeout
 	#get_tree().change_scene_to_file("res://grasslands.tscn")
 	pass # Replace with function body.
@@ -82,7 +86,42 @@ func _on_dialogue_choice_selected() -> void:
 	talking.emit(sceneNum)
 	pass # Replace with function body.
 
+########################## MENUS #############################
 
 func _on_menus_game_paused(gameState) -> void:
 	gameStatus.emit(gameState)
+	pass # Replace with function body.
+
+func _on_menus_save_game() -> void:
+	DirAccess.make_dir_absolute(Global.save_file_path)
+	Global.save_gameData.change_player_pos($erinSolstice.position.x,$erinSolstice.position.y)
+	Global.save_gameData.change_location(Global.location)
+	Global.save_gameData.change_scene(sceneNum)
+	
+	ResourceSaver.save(Global.save_gameData, Global.save_file_path + Global.save_file_name)
+	print("Saved")
+	pass # Replace with function body.
+
+func _on_menus_load_game() -> void:
+	sceneTransition.play("fadeIn") 
+	Global.save_gameData = ResourceLoader.load(Global.save_file_path + Global.save_file_name).duplicate(true)
+	$erinSolstice.position.x = Global.save_gameData.playPosX
+	$erinSolstice.position.y = Global.save_gameData.playPosY
+	
+	Global.location = Global.save_gameData.location
+	sceneNum = Global.save_gameData.sceneNum
+	
+	if Global.location == 'cave':
+		$Caves.show()
+		$GrassLands.hide()
+	elif Global.location == 'grassland':
+		$GrassLands.show()
+		$Goblin.show()
+		$Caves.hide()
+	sceneTransition.play("fadeOut")
+	await get_tree().create_timer(0.5).timeout
+	print("Loaded playerPos: ", $erinSolstice.position.x, " ", $erinSolstice.position.y)
+	print("Loaded location: ", Global.location)
+	print("Loaded scene: ", sceneNum)
+	print("Loaded")
 	pass # Replace with function body.

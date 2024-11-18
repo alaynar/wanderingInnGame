@@ -140,11 +140,17 @@ offset_bottom = 51.0
 text = "||"
 metadata/_edit_use_anchors_ = true
 
+[node name="Tutorial" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 326.0
+offset_top = 20.0
+offset_right = 473.0
+offset_bottom = 51.0
+text = "WASD to move"
+
 [connection signal="pressed" from="WanderingInnImage/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="WanderingInnImage/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="WanderingInnImage/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PauseMenu/SaveGameButton" to="." method="_on_save_game_button_pressed"]
-[connection signal="pressed" from="PauseMenu/SaveGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]

@@ -8,11 +8,9 @@ script = ExtResource("1_g5nml")
 metadata/_edit_group_ = true
 
 [node name="WanderingInnImage" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
 offset_top = -74.0
 offset_right = 5.0
 offset_bottom = 74.0
@@ -77,6 +75,7 @@ theme_override_font_sizes/font_size = 25
 text = "Credits"
 
 [node name="PauseMenu" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -131,6 +130,7 @@ theme_override_font_sizes/font_size = 25
 text = "Quit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
 offset_left = 668.0

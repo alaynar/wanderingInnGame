@@ -76,7 +76,6 @@ theme_override_font_sizes/font_size = 25
 text = "Credits"
 
 [node name="PauseMenu" type="ColorRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -131,7 +130,6 @@ theme_override_font_sizes/font_size = 25
 text = "Quit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
 offset_left = 668.0

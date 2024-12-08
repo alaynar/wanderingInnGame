@@ -2,6 +2,7 @@ extends CanvasLayer
 signal next_message
 signal status
 signal choiceSelected
+signal roomchange
 var dialogueState
 var stillSpeaking = false
 var currScriptVar
@@ -99,6 +100,9 @@ func _stop_dialogue() -> void:
 	dim_background(dialogueState)
 	status.emit(dialogueState)
 	
+	if currSceneNum == 2 || currSceneNum == 1:
+		roomchange.emit()
+		
 	if sceneStatus:
 		next_message.emit(-2)
 	pass
@@ -212,6 +216,8 @@ func _choice_start() -> void:
 		$Options2.show()
 		$Options2/OptionD.show()
 		$Options2/OptionE.show()
+		print("here")
+		
 	elif numChoices == 3:
 		$Options3.show()
 		$Options3/OptionA.show()

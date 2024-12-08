@@ -28,8 +28,6 @@ func _on_dialogue_status(gameState) -> void:
 	#print("Game state is: ", gameState)
 	pass # Replace with function body.
 
-
-
 func _on_goblin_interact_avail() -> void:
 	talking.emit(sceneNum)
 	pass # Replace with function body.
@@ -43,23 +41,39 @@ func new_game():
 	sceneTransition.play("fadeIn")
 	$GrassLands.hide()
 	$Goblin.hide()
+	$Caves.hide()
+	$dialogue/BaseRoom.show()
+	$erinSolstice.hide()
+	sceneTransition.play("fadeOut")
+	await get_tree().create_timer(.8).timeout
+	Global.location = "room"
+	#get_tree().change_scene_to_file("res://caves.tscn")
+	sceneNum = 0
+	talking.emit(sceneNum)
+	pass
+
+func enter_cave():
+	sceneTransition.play("fadeIn")
+	$GrassLands.hide()
+	$Goblin.hide()
+	$dialogue/BaseRoom.hide()
 	$Caves.show()
 	$"Caves/Cave Music".play()
+	$erinSolstice.show()
 	$erinSolstice.position.x = 640
 	$erinSolstice.position.y = 278
 	sceneTransition.play("fadeOut")
 	await get_tree().create_timer(.8).timeout
 	Global.location = "cave"
 	#get_tree().change_scene_to_file("res://caves.tscn")
-	sceneNum = 0
+	sceneNum = 3
 	talking.emit(sceneNum)
-	pass
 
 func _on_caves_dragon() -> void:
 	#Need to give option buttons first!
 	if Global.location == "cave":
 		print("Hi")
-		var choiceArray=["Panic","Don't Panic","Double check",1,2,3]
+		var choiceArray=["Panic","Don't Panic","Double check",4,5,6]
 		choiceSelection.emit(3,choiceArray)
 	pass # Replace with function body.
 
@@ -112,14 +126,21 @@ func _on_menus_load_game() -> void:
 	Global.location = Global.save_gameData.location
 	sceneNum = Global.save_gameData.sceneNum
 	
+	if Global.location == 'room':
+		$Caves.hide()
+		$Grasslands.hide()
+		$"Caves/Cave Music".stop()
+		$dialogue/BaseRoom.show()
 	if Global.location == 'cave':
 		$Caves.show()
 		$GrassLands.hide()
+		$dialogue/BaseRoom.hide()
 		$"Caves/Cave Music".play()
 	elif Global.location == 'grassland':
 		$GrassLands.show()
 		$Goblin.show()
 		$Caves.hide()
+		$dialogue/BaseRoom.hide()
 		$"Caves/Cave Music".stop()
 	sceneTransition.play("fadeOut")
 	await get_tree().create_timer(0.5).timeout

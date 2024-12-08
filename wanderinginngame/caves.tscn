@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dl81jfigd4o4p"]
+[gd_scene load_steps=12 format=4 uid="uid://dl81jfigd4o4p"]
 
 [ext_resource type="Texture2D" uid="uid://dsfserasmooea" path="res://art/Tilemap/CaveScene.png" id="1_sjsxm"]
 [ext_resource type="Texture2D" uid="uid://mi3hjxhaebl6" path="res://art/GamePlay/dragonPixel.png" id="2_3pvax"]
@@ -137,6 +137,10 @@ texture = ExtResource("1_sjsxm")
 [sub_resource type="TileSet" id="TileSet_spjrs"]
 sources/1 = SubResource("TileSetAtlasSource_gp8jc")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fexip"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nhqbo"]
 a = Vector2(-8, -36)
 b = Vector2(-209, 258)
@@ -161,6 +165,12 @@ tile_set = SubResource("TileSet_spjrs")
 position = Vector2(179, 195)
 scale = Vector2(0.798, 0.834)
 texture = ExtResource("2_3pvax")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Dragon"]
+visible = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_fexip")
+trail_enabled = true
 
 [node name="DragonLine" type="Area2D" parent="."]
 

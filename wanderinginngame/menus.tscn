@@ -132,6 +132,8 @@ text = "Quit"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
+z_index = 1
+y_sort_enabled = true
 offset_left = 668.0
 offset_top = 20.0
 offset_right = 705.0
@@ -140,10 +142,10 @@ text = "||"
 metadata/_edit_use_anchors_ = true
 
 [node name="Tutorial" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 326.0
-offset_top = 20.0
-offset_right = 473.0
-offset_bottom = 51.0
+offset_left = 595.0
+offset_top = 69.0
+offset_right = 715.0
+offset_bottom = 100.0
 text = "WASD to move"
 
 [connection signal="pressed" from="WanderingInnImage/NewGameButton" to="." method="_on_new_game_button_pressed"]

@@ -155,6 +155,31 @@ tile_map_data = PackedByteArray("AAA4ABEAAQACAAMAAAA5ABEAAQACAAMAAAA6ABEAAQACAAM
 tile_set = SubResource("TileSet_12yvu")
 script = ExtResource("2_h658p")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="dragonTimer" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = 47.0
+offset_right = -3.0
+offset_bottom = 70.0
+grow_horizontal = 2
+
+[node name="black" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -382.0
+offset_top = -109.0
+offset_right = 188.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Darkness" type="TileMapLayer" parent="."]
 z_index = -5
 position = Vector2(-32, 5)
@@ -162,7 +187,7 @@ tile_map_data = PackedByteArray("AADq//n/AQAJAAcAAADq//r/AQAJAAcAAADq//v/AQAJAAc
 tile_set = SubResource("TileSet_spjrs")
 
 [node name="Dragon" type="Sprite2D" parent="."]
-position = Vector2(179, 195)
+position = Vector2(210, 237)
 scale = Vector2(0.798, 0.834)
 texture = ExtResource("2_3pvax")
 
@@ -173,6 +198,7 @@ process_material = SubResource("ParticleProcessMaterial_fexip")
 trail_enabled = true
 
 [node name="DragonLine" type="Area2D" parent="."]
+position = Vector2(70, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DragonLine"]
 position = Vector2(465, 202)
@@ -186,6 +212,9 @@ shape = SubResource("SegmentShape2D_up58o")
 
 [node name="Cave Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1hk4e")
+
+[node name="EscDragon" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="DragonLine" to="." method="_on_dragon_line_body_entered"]
 [connection signal="body_entered" from="EdgeOfCave" to="." method="_on_edge_of_cave_body_entered"]

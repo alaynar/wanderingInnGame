@@ -6,8 +6,11 @@ var sceneNum
 signal talking
 signal choiceSelection
 signal mainMenuStart
+signal stillinCave
+signal deathFlag
 
 @onready var sceneTransition = $sceneTransition/AnimationPlayer
+@onready var redSceneTransition = $sceneTransition/RedColor
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#gameState = "playable"
@@ -77,9 +80,17 @@ func _on_caves_dragon() -> void:
 		choiceSelection.emit(3,choiceArray)
 	pass # Replace with function body.
 
+func _dragon_angered() -> void:
+	print("dragon angered.")
+	$Caves/EscDragon.start(8)
+	redSceneTransition.play("fadeRed")
+	#$Caves.stillInCave = true
+
 func _on_caves_exit_cave() -> void:
 	if Global.location == "cave":
 		if sceneNum >= 4:
+			stillinCave.emit()
+			redSceneTransition.play_backwards("fadeRed")
 			sceneTransition.play("fadeIn")
 			await get_tree().create_timer(0.5).timeout
 	
@@ -149,3 +160,18 @@ func _on_menus_load_game() -> void:
 	print("Loaded scene: ", sceneNum)
 	print("Loaded")
 	pass # Replace with function body.
+
+func _on_menus_quit() -> void:
+	$"Caves/Cave Music".stop()
+
+	
+	pass
+
+#################### DEATH ############################
+
+func _on_death() -> void:
+	#You have died!
+	#Show the death menu/fade to black
+	$Caves/CanvasLayer/black.show()
+	deathFlag.emit()
+	pass

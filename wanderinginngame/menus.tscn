@@ -129,6 +129,60 @@ offset_bottom = 533.0
 theme_override_font_sizes/font_size = 25
 text = "Quit"
 
+[node name="DeathMenu" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -111.0
+offset_right = 326.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.601223, 0.601223, 0.601223, 0.643137)
+
+[node name="Dead" type="RichTextLabel" parent="DeathMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.5
+offset_top = 210.0
+offset_right = 152.5
+offset_bottom = 284.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "You died.."
+
+[node name="NewGameButton" type="Button" parent="DeathMenu"]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 490.0
+offset_right = 492.0
+offset_bottom = 533.0
+theme_override_font_sizes/font_size = 25
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="DeathMenu"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 489.0
+offset_right = 666.0
+offset_bottom = 532.0
+theme_override_font_sizes/font_size = 25
+text = "Load Game"
+
+[node name="Quit" type="Button" parent="DeathMenu"]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 489.0
+offset_right = 841.0
+offset_bottom = 533.0
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
@@ -154,4 +208,7 @@ text = "WASD to move"
 [connection signal="pressed" from="PauseMenu/SaveGameButton" to="." method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="DeathMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="DeathMenu/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="DeathMenu/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]

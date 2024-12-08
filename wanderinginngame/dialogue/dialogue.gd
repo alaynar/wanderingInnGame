@@ -3,6 +3,7 @@ signal next_message
 signal status
 signal choiceSelected
 signal roomchange
+signal dragonAngered
 var dialogueState
 var stillSpeaking = false
 var currScriptVar
@@ -100,13 +101,20 @@ func _stop_dialogue() -> void:
 	dim_background(dialogueState)
 	status.emit(dialogueState)
 	
-	if currSceneNum == 2 || currSceneNum == 1:
-		roomchange.emit()
+	check_extra_steps()
 		
 	if sceneStatus:
 		next_message.emit(-2)
 	pass
-	
+
+func check_extra_steps():
+	if currSceneNum == 2 || currSceneNum == 1:
+		roomchange.emit()
+	if currSceneNum == 4 || currSceneNum == 6:
+		dragonAngered.emit()
+	pass
+
+
 func show_message(text):
 	$Message.text = text
 	$Message.show()

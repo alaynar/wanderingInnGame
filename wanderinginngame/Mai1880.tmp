@@ -67,7 +67,6 @@ position = Vector2(-340, -103)
 [connection signal="choiceSelection" from="Scripts" to="dialogue" method="_on_scripts_choice_selection"]
 [connection signal="passingScriptRef" from="Scripts" to="dialogue" method="_on_scripts_passing_script_ref"]
 [connection signal="sceneChange" from="Scripts" to="." method="_on_scripts_scene_change"]
-[connection signal="enterWanderingInn" from="GrassLands" to="." method="_on_grass_lands_enter_wandering_inn"]
 [connection signal="deathFlag" from="Caves" to="." method="_on_death"]
 [connection signal="dragon" from="Caves" to="." method="_on_caves_dragon"]
 [connection signal="exitCave" from="Caves" to="." method="_on_caves_exit_cave"]

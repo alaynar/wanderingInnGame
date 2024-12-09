@@ -3,6 +3,7 @@ extends Node
 #@export var gameState = 'playable'
 signal gameStatus
 var sceneNum
+var redScene = false
 signal talking
 signal choiceSelection
 signal mainMenuStart
@@ -75,22 +76,23 @@ func enter_cave():
 func _on_caves_dragon() -> void:
 	#Need to give option buttons first!
 	if Global.location == "cave":
-		print("Hi")
 		var choiceArray=["Panic","Don't Panic","Double check",4,5,6]
 		choiceSelection.emit(3,choiceArray)
 	pass # Replace with function body.
 
 func _dragon_angered() -> void:
 	print("dragon angered.")
+	redScene = true
 	$Caves/EscDragon.start(8)
 	redSceneTransition.play("fadeRed")
 	#$Caves.stillInCave = true
 
 func _on_caves_exit_cave() -> void:
 	if Global.location == "cave":
-		if sceneNum >= 4:
+		if sceneNum >= 7:
 			stillinCave.emit()
-			redSceneTransition.play_backwards("fadeRed")
+			if redScene == true:
+				redSceneTransition.play_backwards("fadeRed")
 			sceneTransition.play("fadeIn")
 			await get_tree().create_timer(0.5).timeout
 	
@@ -105,6 +107,14 @@ func _on_caves_exit_cave() -> void:
 			talking.emit(sceneNum)
 	#await get_tree().create_timer(0.5).timeout
 	#get_tree().change_scene_to_file("res://grasslands.tscn")
+	pass # Replace with function body.
+
+func _on_grass_lands_enter_wandering_inn() -> void:
+	print("SceneNum:", sceneNum)
+	sceneTransition.play("fadeIn")
+	await get_tree().create_timer(0.5).timeout
+	talking.emit(sceneNum)
+	sceneTransition.play("fadeOut")
 	pass # Replace with function body.
 
 
@@ -160,6 +170,10 @@ func _on_menus_load_game() -> void:
 	print("Loaded scene: ", sceneNum)
 	print("Loaded")
 	pass # Replace with function body.
+
+func _on_menus_new_game_start() -> void:
+	_on_menus_save_game()
+	pass
 
 func _on_menus_quit() -> void:
 	$"Caves/Cave Music".stop()

@@ -166,6 +166,8 @@ offset_top = 47.0
 offset_right = -3.0
 offset_bottom = 70.0
 grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="black" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -187,6 +189,8 @@ tile_map_data = PackedByteArray("AADq//n/AQAJAAcAAADq//r/AQAJAAcAAADq//v/AQAJAAc
 tile_set = SubResource("TileSet_spjrs")
 
 [node name="Dragon" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(210, 237)
 scale = Vector2(0.798, 0.834)
 texture = ExtResource("2_3pvax")

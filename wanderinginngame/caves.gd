@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 		deathFlag.emit()
 	
 	if stillInCave:
-		$CanvasLayer/dragonTimer.set_text(str($EscDragon.get_time_left()))
+		#$CanvasLayer/Timetoescape.text("")
+		$CanvasLayer/dragonTimer.set_text("Time to escape:\n" + str(int(str($EscDragon.get_time_left()))))
 	else:
 		stillInCave = false
 		$EscDragon.stop()

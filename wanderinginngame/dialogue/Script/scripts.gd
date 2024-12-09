@@ -3,7 +3,7 @@ signal passingScriptRef
 signal sceneChange
 signal choiceSelection
 var isNextDialChoice
-var sceneNum = [0.4,0.5,0.6,0.0,0.1,0.2,0.3,1.0,1.1,1.2,1.3,1.4,-1]
+var sceneNum = [0.4,0.5,0.6,0.0,0.1,0.2,0.3,1.0,1.1,1.2,1.3,2.0,1.4,-1]
 var currScene = 0
 
 var scriptRoom0v4 = [
@@ -22,7 +22,7 @@ var scriptRoomOpt0v5 = [
 				["Erin Solstice", "Another Victory!! Easy as pie", "erin", -2],
 				["Erin Solstice", "Okay, now I should seriously take a break", "erin", 2],
 				["Erin Solstice", "and use the bathroom while I'm at it", "erin", -2],
-				["", "Erin walks the long hallway to the bathroom when everything fades to black", "erin", -2],
+				["", "Erin walks the long hallway to the bathroom when everything fades to black", "", -2],
 				["Erin Solstice", "oh great, who turned out the lights", "erin", -2],
 				["", "In the blink of an eye, the world reappears", "", 3]
 				]
@@ -30,7 +30,7 @@ var scriptRoomOpt0v5 = [
 #Take a break
 var scriptRoomOpt0v6 = [
 				["Erin Solstice", "Maybe I should use the bathroom while I'm at it", "erin", -2],
-				["", "Erin walks the long hallway to the bathroom when everything fades to black", "erin", -2],
+				["", "Erin walks the long hallway to the bathroom when everything fades to black", "", -2],
 				["Erin Solstice", "oh great, who turned out the lights", "erin", -2],
 				["", "In the blink of an eye, the world reappears", "", 3]
 ]
@@ -85,6 +85,26 @@ var scriptWildOpt1v3 = [
 var scriptWild1v4 = [
 				["Creator", "Come back for more story next time!", "", -2],
 ]
+
+var scriptInn2v0 = [
+				["Erin Solstice", "hello??", "erin", -2],
+				["Erin Solstice", "Is anyone here??", "erin", -2],
+				["", "The building is worn down, and covered in a thick layer of dust","",-2],
+				["Erin Solstice", "ugh, *cough* it's disgusting", "erin", -2],
+				["Erin Solstice", "I'll go back outside", "erin", -2],
+				["Erin Solstice", "...", "erin", -2],
+				["Erin Solstice", "It's raining", "erin", -2],
+				["Erin Solstice", "I guess I'll be stuck in here for a while", "erin", -2],
+				["Erin Solstice", "...", "erin", -2],
+				["Erin Solstice", "Ouch!", "erin", -2],
+				["Erin Solstice", "That dragon really burnt my arm", "erin", -2],
+				["", "Although the dragon had barly breathed, Erins arm was singed black","",-2],
+				["Erin Solstice", "whats going to happen to me now..", "erin", -2],
+				["Creator", "Thank you for playing the tutorial of 'The Wandering Inn: The Game!'", "", -2],
+				["Creator", "While this story is over, you can read the rest online!","",-2],
+				["Creator", "Thank you Pirateaba for these amazing books", "", -2],
+				]
+				
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -131,6 +151,9 @@ func _on_main_talking(varSceneNum) -> void:
 	elif sceneNum[varSceneNum] == 1.3:
 		var length = scriptWildOpt1v3.size()
 		passingScriptRef.emit(scriptWildOpt1v3,length,currScene)
+	elif sceneNum[varSceneNum] == 2.0:
+		var length = scriptInn2v0.size()
+		passingScriptRef.emit(scriptInn2v0,length,currScene)
 	elif sceneNum[varSceneNum] == 1.4:
 		var length = scriptWild1v4.size()
 		passingScriptRef.emit(scriptWild1v4,length,currScene)

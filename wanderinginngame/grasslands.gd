@@ -5,6 +5,7 @@ signal enterWanderingInn
 
 func _ready() -> void:
 	$TheInn/innImage.hide()
+	$Rain.stop()
 	pass
 	
 func _process(delta: float) -> void:
@@ -14,6 +15,7 @@ func _process(delta: float) -> void:
 		inDoorWay = false
 		enterWanderingInn.emit()
 		$TheInn/innImage.show()
+		$Rain.play()
 	
 	pass
 

@@ -176,7 +176,7 @@ func _on_menus_new_game_start() -> void:
 
 func _on_menus_quit() -> void:
 	$"Caves/Cave Music".stop()
-
+	$GrassLands/Rain.stop()
 	
 	pass
 

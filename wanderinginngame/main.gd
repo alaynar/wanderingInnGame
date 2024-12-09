@@ -110,11 +110,10 @@ func _on_caves_exit_cave() -> void:
 	pass # Replace with function body.
 
 func _on_grass_lands_enter_wandering_inn() -> void:
-	print("SceneNum:", sceneNum)
 	sceneTransition.play("fadeIn")
 	await get_tree().create_timer(0.5).timeout
-	talking.emit(sceneNum)
 	sceneTransition.play("fadeOut")
+	talking.emit(sceneNum)
 	pass # Replace with function body.
 
 

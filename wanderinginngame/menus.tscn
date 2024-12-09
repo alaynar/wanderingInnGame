@@ -8,6 +8,7 @@ script = ExtResource("1_g5nml")
 metadata/_edit_group_ = true
 
 [node name="WanderingInnImage" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -75,7 +76,64 @@ offset_bottom = 466.0
 theme_override_font_sizes/font_size = 25
 text = "Credits"
 
+[node name="CreditMenu" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -74.0
+offset_right = 5.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d217u")
+expand_mode = 1
+
+[node name="credits" type="RichTextLabel" parent="CreditMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -169.0
+offset_top = 114.0
+offset_right = 195.0
+offset_bottom = 286.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "Wandering Inn: 
+The Game"
+
+[node name="Author" type="RichTextLabel" parent="CreditMenu"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 242.0
+offset_right = 620.0
+offset_bottom = 438.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "The Wandering Inn Books: PirateAba
+
+Background Image: Christian T. Arts
+
+AI Art: Ian Rankin & Thomas Montoya
+
+Script & Game: Alayna Montoya
+"
+
+[node name="back" type="Button" parent="CreditMenu"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 460.0
+offset_right = 451.0
+offset_bottom = 503.0
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
 [node name="PauseMenu" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -130,6 +188,7 @@ theme_override_font_sizes/font_size = 25
 text = "Quit"
 
 [node name="DeathMenu" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -184,6 +243,7 @@ theme_override_font_sizes/font_size = 25
 text = "Quit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
 z_index = 1
@@ -205,6 +265,8 @@ text = "WASD to move"
 [connection signal="pressed" from="WanderingInnImage/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="WanderingInnImage/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="WanderingInnImage/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CreditMenu/back" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="CreditMenu/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PauseMenu/SaveGameButton" to="." method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Quit" to="." method="_on_quit_pressed"]
